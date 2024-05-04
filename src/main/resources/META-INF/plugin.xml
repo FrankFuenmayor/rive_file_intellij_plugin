@@ -1,0 +1,45 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>org.example.rive_plugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Rive_plugin</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="rive-plugin-support@frankfuenmayor.com" url="https://www.frankfuenmayor.com">Frank Fuenmayor</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+
+    <extensions defaultExtensionNs="com.intellij">
+<!--        <treeStructureProvider implementation="com.frankfuenmayor.intellij.riveplugin.TextOnlyTreeStructureProvider"/>-->
+        <fileEditorProvider implementation="com.frankfuenmayor.intellij.riveplugin.RiveFilePreviewProvider"
+                            order="first"/>
+        <fileType
+                name="Rive File"
+                implementationClass="com.frankfuenmayor.intellij.riveplugin.RiveFileType"
+                fieldName="INSTANCE"
+                language="Rive"
+                extensions="riv"/>
+
+        <postStartupActivity implementation="com.frankfuenmayor.intellij.riveplugin.RivePluginInitProjectActivity"/>
+
+
+    </extensions>
+
+
+</idea-plugin>
