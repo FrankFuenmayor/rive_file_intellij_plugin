@@ -1,14 +1,12 @@
 package com.frankfuenmayor.intellij.riveplugin
 
 import com.intellij.openapi.fileEditor.FileEditor
+import com.intellij.openapi.fileEditor.impl.EditorTabTitleProvider
 import com.intellij.openapi.fileEditor.FileEditorState
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.ui.jcef.JBCefBrowser
-import java.awt.BorderLayout
 import java.beans.PropertyChangeListener
 import javax.swing.JComponent
-import javax.swing.JPanel
 
 
 class RiveFileEditor(private val file: VirtualFile) : FileEditor {
@@ -35,11 +33,9 @@ class RiveFileEditor(private val file: VirtualFile) : FileEditor {
         return filePreview
     }
 
-
     override fun getName(): String = "Rive Preview"
 
-    override fun setState(p0: FileEditorState) {
-
+    override fun setState(editorState: FileEditorState) {
     }
 
     override fun isModified(): Boolean {
@@ -50,12 +46,10 @@ class RiveFileEditor(private val file: VirtualFile) : FileEditor {
         return true
     }
 
-    override fun addPropertyChangeListener(p0: PropertyChangeListener) {
-        println(p0)
+    override fun addPropertyChangeListener(propertyChangeListener: PropertyChangeListener) {
     }
 
-    override fun removePropertyChangeListener(p0: PropertyChangeListener) {
-        println(p0)
+    override fun removePropertyChangeListener(propertyChangeListener: PropertyChangeListener) {
     }
 
     override fun getFile(): VirtualFile = file

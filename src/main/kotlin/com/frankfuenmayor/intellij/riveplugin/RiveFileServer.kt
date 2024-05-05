@@ -3,13 +3,15 @@ package com.frankfuenmayor.intellij.riveplugin
 import io.javalin.Javalin
 import io.javalin.http.Context
 import java.io.FileInputStream
+import java.nio.file.Files
 import java.util.*
 import kotlin.random.Random
 
+const val riveFilePlaceholder = "{{{RIVE_FILE}}}"
+
 @org.intellij.lang.annotations.Language(value = "html")
 const val viewerHtml = """<html lang="en">
-<head>
-    <title>Rive Hello World</title>
+<head> 
     <style>
         body {
             margin: 0;
@@ -19,14 +21,15 @@ const val viewerHtml = """<html lang="en">
             height: 100vh;
             width: 100vw;
         }
-    </style>
+    </style> 
+    <title>Preview</title>
 </head>
 <body>
 <canvas id="canvas"></canvas>
 <script src="https://unpkg.com/@rive-app/canvas@2.7.0"></script>
 <script>
     const r = new rive.Rive({
-      src: "{{rivFile}}",
+      src: "$riveFilePlaceholder",
       canvas: document.getElementById("canvas"),
       autoplay: true,
       onLoad: () => {r.resizeDrawingSurfaceToCanvas();},
@@ -52,18 +55,20 @@ object RiveFileServer {
         started = true
     }
 
-    fun getUrl(path: String): String = "http://127.0.0.1:${port}${path}"
+    fun getUrl(path: String): String = "http://127.0.0.1:$port/$securePrefix$path"
 
-    private fun Javalin.getFileHandler() = get("/${securePrefix}/*") {
-        it.result(FileInputStream(it.path().removePrefix("/${securePrefix}")))
+    private fun Javalin.getFileHandler() = get("/-/*") {
+        val filePath = it.path().removePrefix("/-/$securePrefix")
+        it.result(FileInputStream(filePath))
     }
 
-    private fun Javalin.getViewerPageHandler() = get("/*") { ctx: Context ->
-        ctx.header("Content-Type", "text/html")
-        viewerHtml
-            .replace("{{rivFile}}", "/${securePrefix}" + ctx.path())
-            .also(::println)
-            .run(ctx::result)
+    private fun Javalin.getViewerPageHandler(): Javalin {
+        return get("/$securePrefix/*") { ctx: Context ->
+            ctx.header("Content-Type", "text/html")
+            viewerHtml
+                .replace(riveFilePlaceholder, "/-" + ctx.path())
+                .run(ctx::result)
+        }
     }
 
 }
