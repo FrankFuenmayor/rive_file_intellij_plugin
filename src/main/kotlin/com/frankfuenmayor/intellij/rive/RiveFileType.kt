@@ -1,4 +1,4 @@
-package com.frankfuenmayor.intellij.riveplugin
+package com.frankfuenmayor.intellij.rive
 
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
@@ -17,7 +17,7 @@ class RiveFileType private constructor() : LanguageFileType(RiveLanguage) {
     }
 
     override fun getIcon(): Icon {
-        return RiveIcons.RIVE_FILE
+        return RiveFileIcons.RIVE_FILE
     }
 
     companion object {

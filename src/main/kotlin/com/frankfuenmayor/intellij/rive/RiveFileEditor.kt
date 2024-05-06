@@ -1,7 +1,6 @@
-package com.frankfuenmayor.intellij.riveplugin
+package com.frankfuenmayor.intellij.rive
 
 import com.intellij.openapi.fileEditor.FileEditor
-import com.intellij.openapi.fileEditor.impl.EditorTabTitleProvider
 import com.intellij.openapi.fileEditor.FileEditorState
 import com.intellij.openapi.util.Key
 import com.intellij.openapi.vfs.VirtualFile
@@ -11,7 +10,7 @@ import javax.swing.JComponent
 
 class RiveFileEditor(private val file: VirtualFile) : FileEditor {
 
-    private val filePreview = RiveFilePreviewer(file)
+    private val filePreview = RiveFileViewer(file)
 
     override fun <T : Any?> getUserData(p0: Key<T>): T? {
         return null

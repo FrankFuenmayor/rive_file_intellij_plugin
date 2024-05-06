@@ -1,16 +1,14 @@
-package com.frankfuenmayor.intellij.riveplugin
+package com.frankfuenmayor.intellij.rive
 
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.ui.Colors
 import com.intellij.ui.jcef.JBCefBrowser
 import com.intellij.ui.jcef.JBCefBrowserBase
 import java.awt.BorderLayout
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import javax.swing.JLabel
 import javax.swing.JPanel
 
-class RiveFilePreviewer(file: VirtualFile) : JPanel() {
+class RiveFileViewer(file: VirtualFile) : JPanel() {
 
     companion object {
         private val executor: ExecutorService = Executors.newSingleThreadExecutor()

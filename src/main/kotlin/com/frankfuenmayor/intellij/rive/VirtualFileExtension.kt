@@ -1,4 +1,4 @@
-package com.frankfuenmayor.intellij.riveplugin
+package com.frankfuenmayor.intellij.rive
 
 import com.intellij.openapi.vfs.VirtualFile
 import java.io.File

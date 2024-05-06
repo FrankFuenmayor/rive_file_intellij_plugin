@@ -1,9 +1,8 @@
-package com.frankfuenmayor.intellij.riveplugin
+package com.frankfuenmayor.intellij.rive
 
 import io.javalin.Javalin
 import io.javalin.http.Context
 import java.io.FileInputStream
-import java.nio.file.Files
 import java.util.*
 import kotlin.random.Random
 

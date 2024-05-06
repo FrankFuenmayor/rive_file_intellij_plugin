@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "rive_plugin"
+rootProject.name = "rive_files_support"
